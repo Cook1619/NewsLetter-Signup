@@ -1,0 +1,23 @@
+{
+  "name": "newsletter-signup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cook1619/NewsLetter-Signup.git"
+  },
+  "author": "Matt Cook",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cook1619/NewsLetter-Signup/issues"
+  },
+  "homepage": "https://github.com/Cook1619/NewsLetter-Signup#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
