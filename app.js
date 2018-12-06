@@ -24,7 +24,11 @@ app.post("/", function (req, res) {
     members: [
       {
         email_address: email,
-        status: "subscribed"
+        status: "subscribed",
+        merge_fields: {
+          FNAME: firstName,
+          LNAME: lastName
+        }
       }
     ]
   };
@@ -35,27 +39,31 @@ app.post("/", function (req, res) {
     url: 'https://us19.api.mailchimp.com/3.0/lists/b0f71c4ccb',
     method: "POST",
     headers: {
-      "Authorization": "Matt2 2205165b2784f37a21992a55b4ca36a0-us19"
+      "Authorization": `Matt2 ${APIKEY}`
     },
     body: jsonData
   };
-  
+
   request(options, function (error, response, body) {
     if (error) {
+      res.sendFile(__dirname + "/failure.html")
+      console.log(response.statusCode);
       console.log(error);
     }
-    else {
+    else if (response.statusCode === 200) {
+      res.sendFile(__dirname + "/success.html")
+      console.log(response.statusCode);
+    } else {
+      res.sendFile(__dirname + "/failure.html")
       console.log(response.statusCode);
     }
   })
 });
 
+app.post('/failure', function (req, res) {
+  res.redirect('/');
+})
+
 app.listen(3000, function () {
   console.log("Listening on port 3000");
 })
-
-// API KEY
-// 2205165b2784f37a21992a55b4ca36a0-us19
-
-//List ID
-// b0f71c4ccb
